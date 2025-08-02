@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Heart Attack Risk Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>❤️ Heart Attack Risk Predictor</h1>
+
+    <form method="POST">
+      <label>Age:</label>
+      <input type="number" name="age" step="any" required value="{{ input_vals[0]|default('') }}">
+
+      <label>Cholesterol (mg/dl):</label>
+      <input type="number" name="cholesterol" step="any" required value="{{ input_vals[1]|default('') }}">
+
+      <label>Heart Rate (bpm):</label>
+      <input type="number" name="heart_rate" step="any" required value="{{ input_vals[2]|default('') }}">
+
+      <label>BMI:</label>
+      <input type="number" name="bmi" step="any" required value="{{ input_vals[3]|default('') }}">
+
+      <label>Systolic BP (e.g. 120):</label>
+      <input type="number" name="systolic_bp" step="any" required value="{{ input_vals[4]|default('') }}">
+
+      <button type="submit">Predict Risk</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result {{ 'high' if 'High' in prediction else 'low' }}">
+        <h2>{{ prediction }}</h2>
+        <p>Confidence: {{ probability }}%</p>
+
+        <!-- Advice Button -->
+        <form method="POST">
+          <input type="hidden" name="age" value="{{ input_vals[0] }}">
+          <input type="hidden" name="cholesterol" value="{{ input_vals[1] }}">
+          <input type="hidden" name="heart_rate" value="{{ input_vals[2] }}">
+          <input type="hidden" name="bmi" value="{{ input_vals[3] }}">
+          <input type="hidden" name="systolic_bp" value="{{ input_vals[4] }}">
+          <input type="hidden" name="get_advice" value="true">
+          <button class="advice" type="submit">🩺 Get Health Tips</button>
+        </form>
+      </div>
+    {% endif %}
+
+    {% if advice %}
+      <div class="advice-box">
+        <h3>🩺 Personalized Health Tips</h3>
+        <ul>
+          {% for tip in advice %}
+            <li>{{ tip }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if show_chart %}
+      <img src="{{ url_for('static', filename='feature_impact.png') }}" class="chart">
+    {% endif %}
+  </div>
+</body>
+</html>

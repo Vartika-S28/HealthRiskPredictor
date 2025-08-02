@@ -1,0 +1,56 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fffafa;
+}
+.container {
+  max-width: 600px; margin: 40px auto;
+  background: white; padding: 30px; border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+label, h1 { display: block; margin-top: 15px; color: #333; }
+input {
+  width: 100%; padding: 10px; margin-top: 5px;
+  border: 1px solid #ccc; border-radius: 5px;
+}
+button {
+  margin-top: 20px; padding: 12px 20px;
+  background: #e74c3c; color: white;
+  border: none; border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: #c0392b; }
+.result {
+  margin-top: 20px; padding: 20px;
+  font-size: 18px; border-radius: 6px;
+  text-align: center;
+}
+.result.high { background: #f8d7da; color: #721c24; }
+.result.low { background: #d4edda; color: #155724; }
+.chart {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+.advice {
+  background-color: #2d98da;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.advice:hover {
+  background-color: #1e73be;
+}
+.advice-box {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eef9ff;
+  border-left: 5px solid #2d98da;
+  border-radius: 8px;
+}
+.advice-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
